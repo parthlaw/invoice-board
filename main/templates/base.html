@@ -11,10 +11,12 @@
         <title></title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="">
-                
+        <link rel="stylesheet" href="{% static 'nav/nav.css' %}">
+        <script src={% static 'nav/nav.js' %}></script>
     </head>
     <body>
+        {%block nav%}
+        {%endblock nav%}
        {%block content %}
        {%endblock content%}
         <script src="" async defer></script>
