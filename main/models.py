@@ -6,11 +6,17 @@ class Shop(models.Model):
     created_on = models.DateTimeField(auto_now_add=True)
     address=models.TextField()
 
+    class Meta:
+        db_table="Shop"
+
 class item(models.Model):
     item_name = models.CharField(max_length=42)
     cost_price= models.FloatField()
     company=models.TextField()
     item_type=models.TextField()
+ 
+    class Meta:
+        db_table="item"
 
 class stock(models.Model):
     shop_id = models.ForeignKey(Shop,on_delete=models.CASCADE)
@@ -20,6 +26,9 @@ class stock(models.Model):
     MRP = models.FloatField()
     mfg_date= models.DateTimeField(auto_now_add=True)
     expiry= models.DateTimeField(auto_now_add=True)
+    
+    class Meta:
+        db_table="stock"
 
 class sales(models.Model):
     invoice_no = models.IntegerField()
@@ -29,9 +38,16 @@ class sales(models.Model):
     cus_name=   models.CharField(max_length=42)
     sell_price= models.FloatField()
 
+    class Meta:
+        db_table="sales"
+
+
 class inventory(models.Model):
     item_id =  models.ForeignKey(item,on_delete=models.CASCADE)
     shop_id =  models.ForeignKey(Shop,on_delete=models.CASCADE)
     quantity= models.IntegerField()
+
+    class Meta:
+        db_table="inventory"
 
     

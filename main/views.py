@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
-# Create your views here.
-from .forms import ShopForm
+from .models import Shop
+
+
 
 def main(request):
     if request.user.is_authenticated:
@@ -23,5 +24,4 @@ def index(request):
         return render(request,'main/index.html',context={'form':form})
     else:
         return redirect('/login')
-
         
