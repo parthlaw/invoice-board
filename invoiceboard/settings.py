@@ -31,6 +31,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'main',
     'registration.apps.RegistrationConfig',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -126,3 +127,4 @@ CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 STATIC_URL = '/static/'
 LOGIN_REDIRECT_URL = "/"
+LOGOUT_REDIRECT_URL = "/"
