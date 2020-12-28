@@ -1,4 +1,2 @@
-*.log
-*.pot
+__pycache__/
 *.pyc
-**/__pycache__
