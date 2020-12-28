@@ -15,8 +15,16 @@
         <script src={% static 'nav/nav.js' %}></script>
     </head>
     <body>
-        {%block nav%}
-        {%endblock nav%}
+        
+<div id="mySidenav" class="sidenav">
+  <span class="intro">Hi {{User.username}}</span>
+  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+  <a href="#" class="nav-item" >About</a>
+  <a href="#" class="nav-item">Services</a>
+  <a href="#" class="nav-item">Clients</a>
+  <a href="{% url 'registration:logout' %}" class="nav-item">Logout</a>
+</div><div class="top-nav">
+<span style="font-size:30px;cursor:pointer;color:white" onclick="openNav()">&#9776;</span></div>
        {%block content %}
        {%endblock content%}
         <script src="" async defer></script>
