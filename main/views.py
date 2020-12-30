@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from .models import Shop
+from .forms import ShopForm
 
 
 
