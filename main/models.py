@@ -1,6 +1,8 @@
 from django.db import models
+from django.contrib.auth.models import User
 
-# Create your models here.
+
+
 
 
 class Shop(models.Model):
@@ -41,3 +43,12 @@ class inventory(models.Model):
     item_id = models.ForeignKey(item, on_delete=models.CASCADE)
     shop_id = models.ForeignKey(Shop, on_delete=models.CASCADE)
     quantity = models.IntegerField()
+
+class Profile(models.Model):
+    user = models.OneToOneField(User, on_delete= models.CASCADE)
+    
+
+   
+    def __str__(self):
+        return f'{self.user.username} Profile'
+    

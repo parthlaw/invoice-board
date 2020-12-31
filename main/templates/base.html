@@ -19,7 +19,7 @@
 <div id="mySidenav" class="sidenav">
   <span class="intro">Hi {{User.username}}</span>
   <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-  <a href="#" class="nav-item" >About</a>
+  <a href="{% url 'main:profile' %}" class="nav-item" >View Profile</a>
   <a href="#" class="nav-item">Services</a>
   <a href="#" class="nav-item">Clients</a>
   <a href="{% url 'registration:logout' %}" class="nav-item">Logout</a>
