@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 # Create your views here.
 from django.contrib import messages
 from .forms import ShopForm
+from .forms import StockForm
 from django.contrib.auth import update_session_auth_hash
 from django.contrib.auth.forms import PasswordChangeForm
 
@@ -27,6 +28,26 @@ def index(request):
         return render(request, 'main/index.html', context={'form': form, "User": User})
     else:
         return redirect('/login')
+
+def stock(request):
+    form = StockForm()
+    if request.user.is_authenticated:
+        User = request.user
+        if request.method == 'POST':
+            form = ShopForm(request.POST)
+            if form.is_valid():
+                form.save()
+
+        return render(request, 'main/index.html', context={'form': form, "User": User})
+    else:
+        return redirect('/login')
+
+    
+
+    
+
+
+
 
 def profile(request):
     if request.user.is_authenticated:
