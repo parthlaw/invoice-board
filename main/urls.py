@@ -10,6 +10,7 @@ urlpatterns = [
     path('addStock/', views.stock, name='addStock'),
     path('profile/', views.profile, name='profile'),
     path('change_password/', views.change_password, name='change_password'),
+    path('additem/', views.items, name='additem'),
    
 
 ]
