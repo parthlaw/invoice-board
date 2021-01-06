@@ -1,8 +1,16 @@
 from django.db import models
+from django.contrib.auth.models import User
 
+
+
+
+
+<<<<<<< HEAD
 # Create your models here.
 
 
+=======
+>>>>>>> b95e064e0994458bab61c7a33a438ebfb3321509
 class Shop(models.Model):
     shop_name = models.CharField(max_length=42)
     created_on = models.DateTimeField(auto_now_add=True)
@@ -23,8 +31,13 @@ class item(models.Model):
         (DROP,'Drop'),(OINTMENT,'Ointment'),(POWDER,'Powder'),(SOAP,'Soap'),(OTHERS,'Others'),]
     item_name = models.CharField(max_length=42)
     company = models.TextField()
+<<<<<<< HEAD
     item_type = models.TextField(choices=ITEM_TYPE_CHOICES)
   
+=======
+    item_type = models.TextField()
+
+>>>>>>> b95e064e0994458bab61c7a33a438ebfb3321509
 
 class stock(models.Model):
     shop_id = models.ForeignKey(Shop, on_delete=models.CASCADE)
@@ -46,9 +59,27 @@ class sales(models.Model):
     date = models.DateTimeField(auto_now_add=True)
     cus_name = models.CharField(max_length=42)
     sell_price = models.FloatField()
+<<<<<<< HEAD
 
 
 class inventory(models.Model):
     item_id = models.ForeignKey(item, on_delete=models.CASCADE)
     shop_id = models.ForeignKey(Shop, on_delete=models.CASCADE)
     quantity = models.IntegerField()
+=======
+
+
+class inventory(models.Model):
+    item_id = models.ForeignKey(item, on_delete=models.CASCADE)
+    shop_id = models.ForeignKey(Shop, on_delete=models.CASCADE)
+    quantity = models.IntegerField()
+
+class Profile(models.Model):
+    user = models.OneToOneField(User, on_delete= models.CASCADE)
+    
+
+   
+    def __str__(self):
+        return f'{self.user.username} Profile'
+    
+>>>>>>> b95e064e0994458bab61c7a33a438ebfb3321509
