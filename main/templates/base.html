@@ -11,6 +11,7 @@
         <title></title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <link rel="stylesheet" href="{% static 'nav/nav.css' %}">
         <script src={% static 'nav/nav.js' %}></script>
     </head>
@@ -24,7 +25,8 @@
   <a href="#" class="nav-item">Clients</a>
   <a href="{% url 'registration:logout' %}" class="nav-item">Logout</a>
 </div><div class="top-nav">
-<span style="font-size:30px;cursor:pointer;color:white" onclick="openNav()">&#9776;</span></div>
+<span style="font-size:30px;cursor:pointer;color:white" onclick="openNav()">&#9776;</span>
+</div>
        {%block content %}
        {%endblock content%}
         <script src="" async defer></script>
