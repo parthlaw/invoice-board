@@ -8,6 +8,7 @@ from django.http import JsonResponse, HttpResponse
 from .models import stock, item
 from django.db.models import Avg, Count
 from django.views.decorators.csrf import csrf_exempt
+from django.core import serializers
 import logging
 logger = logging.getLogger('name')
 
@@ -104,7 +105,6 @@ def test(request):
     itemData = item.objects.all()
     for i in itemData:
         stockData = stock.objects.all().filter(item_id=i.id)
-        logger.info(stockData)
     return render(request, "main/createInvoice.html")
 
 
@@ -113,7 +113,9 @@ def search(request):
     if request.method == "POST":
         import json
         post_data = json.loads(request.body.decode("utf-8"))
-        obj = stock.objects.filter(item_id=1)
-        logger.info(obj)
-    son = {'message': 'I listned'}
-    return JsonResponse(son)
+        logger.info(post_data['data'])
+        obj = stock.objects.filter(
+            item_id__item_name__contains=post_data['data'])
+        dat = serializers.serialize('json', obj)
+        b = json.loads(dat)
+    return JsonResponse(b, safe=False)

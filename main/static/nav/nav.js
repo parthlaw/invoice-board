@@ -20,7 +20,7 @@ function openNav() {console.log('open');
                 'X-Requested-With': 'XMLHttpRequest', //Necessary to work with request.is_ajax()
             },
             body:JSON.stringify({data:search.value}),
-        }).then(resp=>{return resp.json()}).then(data=>{console.log(data);})
+        }).then(resp=>{return resp.json()}).then(data=>{if(data){data.forEach(d=>{console.log(d);optionsContainer.innerHTML='<div class="option"><input type="radio" class="radio" id="2" name="item" value="test1"/><label for="2">Test1</label></div>'})}})
         }
     selected.addEventListener("click", () => {
         optionsContainer.classList.toggle("active");
