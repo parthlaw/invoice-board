@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 # Create your views here.
 from django.contrib import messages
-from .forms import ShopForm,  ItemForm, InvoiceForm
+from .forms import ShopForm,  ItemForm, InvoiceForm, StockForm
 from django.contrib.auth import update_session_auth_hash
 from django.contrib.auth.forms import PasswordChangeForm
 from django.http import JsonResponse, HttpResponse
@@ -102,9 +102,7 @@ def createInvoice(request):
 
 
 def test(request):
-    itemData = item.objects.all()
-    for i in itemData:
-        stockData = stock.objects.all().filter(item_id=i.id)
+    logger.info(request.POST)
     return render(request, "main/createInvoice.html")
 
 
@@ -113,9 +111,10 @@ def search(request):
     if request.method == "POST":
         import json
         post_data = json.loads(request.body.decode("utf-8"))
-        logger.info(post_data['data'])
         obj = stock.objects.filter(
-            item_id__item_name__contains=post_data['data'])
-        dat = serializers.serialize('json', obj)
-        b = json.loads(dat)
-    return JsonResponse(b, safe=False)
+            item_id__item_name__contains=post_data['data']).select_related('item_id')
+        li = []
+        for o in obj:
+            li.append({'quantity': o.quantity, 'MRP': o.MRP, 'cost_price': o.cost_price,
+                       'exp': o.expiry, 'name': o.item_id.item_name, 'id': o.id})
+    return JsonResponse(li, safe=False)
